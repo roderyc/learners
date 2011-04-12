@@ -12,7 +12,7 @@
          (h-weights (make-vector n-hypotheses #f))
          (e-weights (learning-problem:weights problem)))
     (do ((k 0 (+ k 1))
-         (new-problem problem (make-learning-problem/weights problem weights)))
+         (new-problem problem (make-learning-problem/weights problem e-weights)))
         ((>= k n-hypotheses) (weighted-majority
                               hypotheses h-weights
                               (car (learning-problem:goals problem))))
@@ -29,10 +29,10 @@
                                  (if (consistent (list e)
                                                  (vector-ref hypotheses k))
                                      (* w (/ error (- 1 error)))
-                                     w)))
-                          (learning-problem:examples new-problem)
-                          (learning-problem:weights new-problem)))
-        (set! weights (normalize new-weights))
+                                     w))
+                               (learning-problem:examples new-problem)
+                               (learning-problem:weights new-problem))))
+        (set! e-weights (normalize new-weights))
         (vector-set! h-weights k (log (/ (- 1 error) error)))))))
 
 ;;; Returns a hypothesis that uses the output value with the highest votes from
