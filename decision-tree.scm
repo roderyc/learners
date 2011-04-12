@@ -47,7 +47,7 @@
                         (append tree (construct-decision-tree
                                       (filter
                                        (lambda (e)
-                                         (equal? (attribute-value A e) value))
+                                         (equal? (attribute-value A e) v))
                                        examples)
                                       (lset-difference equal? attributes '(A))
                                       goal examples)))
