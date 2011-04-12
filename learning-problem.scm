@@ -1,4 +1,5 @@
 ;;; Uses (subset srfi-1 (assoc every))
+;;;      (subset srfi-9 (define-record-type))
 
 ;;; A type for learning problems, and utilities for manipulating example
 ;;; data. Examples are lists of (attribute . value) pairs. If an example has
