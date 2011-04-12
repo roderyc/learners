@@ -1,4 +1,4 @@
-;;; Uses (subset learning-problem (consistent make-learning-problem/weights))
+;;; Uses (subset learning-problem (consistent copy-learning-problem/weights))
 ;;;      (subset srfi-1 (first second third))
 
 ;;; Takes a learning-problem, a learning algorithm, and a number specifying the
@@ -12,7 +12,7 @@
          (h-weights (make-vector n-hypotheses #f))
          (e-weights (learning-problem:weights problem)))
     (do ((k 0 (+ k 1))
-         (new-problem problem (make-learning-problem/weights problem e-weights)))
+         (new-problem problem (copy-learning-problem/weights problem e-weights)))
         ((>= k n-hypotheses) (weighted-majority
                               hypotheses h-weights
                               (car (learning-problem:goals problem))))

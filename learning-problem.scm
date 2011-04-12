@@ -6,26 +6,25 @@
 ;;; been classified, some of those pairs will be goals. Goals are the output
 ;;; attributes that examples havee been classified into.
 (define-record-type :learning-problem
-    (make-learning-problem attributes examples goals)
+    (make-learning-problem attributes goals examples weights)
     learning-problem?
     (attributes learning-problem:attributes)
     (examples learning-problem:examples)
     (weights learning-problem:weights)
     (goals learning-problem:goals))
 
-(define (make-learning-problem/weights problem new-weights)
+(define (default-weights examples)
+  (map (lambda (e) (/ 1 (length examples))) examples))
+
+(define (make-learning-problem/default-weights attributes goals examples)
+  (make-learning-problem attributes goals examples (default-weights examples)))
+
+(define (copy-learning-problem/weights problem new-weights)
   (make-learning-problem
    (learning-problem:attributes problem)
+   (learning-problem:goals problem)
    (learning-problem:examples problem)
-   new-weights
-   (learning-problem:goals problem)))
-
-;; (defun print-learning-problem (problem &optional stream depth)
-;;   (declare (ignore depth))
-;;   (format stream "#<~A with ~D examples and ~D attributes>"
-;; 	  (type-of problem)
-;; 	  (length (learning-problem-examples problem))
-;; 	  (length (learning-problem-attributes problem))))
+   new-weights))
 
 ;;; Returns the name of a given attribute.
 (define (attribute-name attribute) (car attribute))

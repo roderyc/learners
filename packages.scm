@@ -4,10 +4,15 @@
         (subset srfi-9 (define-record-type)))
   (files learning-problem))
 
+(define-structure problems problems-interface
+  (open scheme
+        (subset learning-problem (make-learning-problem/default-weights)))
+  (files (problems restaurant)))
+
 (define-structure adaboost adaboost-interface
   (open scheme
         (subset learning-problem (consistent
-                                  make-learning-problem/weights
+                                  copy-learning-problem/weights
                                   learning-problem:weights
                                   learning-problem:goals
                                   learning-problem:examples))
@@ -20,9 +25,10 @@
                                   learning-problem:examples
                                   learning-problem:attributes
                                   learning-problem:weights
+                                  attribute-name
                                   attribute-value))
         (subset srfi-1 (filter every count lset-difference fold make-list)))
   (files decision-tree))
 
 (define-structure high-learners high-learners-interface
-  (open learning-problem adaboost decision-tree))
+  (open learning-problem problems adaboost decision-tree))

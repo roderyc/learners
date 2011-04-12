@@ -4,7 +4,9 @@
 (define-interface decision-tree-interface
   (export decision-tree-learner
           decision-stump-learner
-          construct-decision-tree))
+          make-decision-tree
+          make-decision-stump
+          execute-tree))
 
 (define-interface learning-problem-interface
   (export make-learning-problem
@@ -13,15 +15,20 @@
           learning-problem:examples
           learning-problem:weights
           learning-problem:goals
-          make-learning-problem/weights
+          copy-learning-problem/weights
+          make-learning-problem/default-weights
           attribute-name
           attribute-domain
           attribute-value
           classify
           consistent))
 
+(define-interface problems-interface
+  (export *restaurant-problem*))
+
 (define-interface high-learners-interface
   (compound-interface
    adaboost-interface
    decision-tree-interface
-   learning-problem-interface))
+   learning-problem-interface
+   problems-interface))
