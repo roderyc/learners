@@ -8,7 +8,7 @@
     (make-learning-problem attributes examples goals)
     learning-problem?
     (attributes learning-problem:attributes)
-    (examples learning-problem:values)
+    (examples learning-problem:examples)
     (weights learning-problem:weights)
     (goals learning-problem:goals))
 
