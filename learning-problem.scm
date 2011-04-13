@@ -48,6 +48,6 @@
 (define (consistent examples h)
   (every (lambda (e)
            (every (lambda (goal)
-                    (equal? (attribute-value (car goal) e) (cdr goal)))
+                    (equal? (attribute-value goal e) (cdr goal)))
                   (h e)))
          examples))
