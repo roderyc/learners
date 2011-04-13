@@ -24,7 +24,8 @@
           consistent))
 
 (define-interface problems-interface
-  (export *restaurant-problem*))
+  (export *restaurant-problem*
+          *and-boolean-problem*))
 
 (define-interface high-learners-interface
   (compound-interface
