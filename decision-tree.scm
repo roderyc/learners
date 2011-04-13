@@ -73,7 +73,7 @@
 ;;; Returns the most common goal attribute among the examples.
 ;;; list of (attr . val) -> (attr val ...) -> (attr . val)
 (define (plurality-value examples goal)
-  (list (attribute-name goal)
+  (cons (attribute-name goal)
         (argmax (cdr goal) (lambda (v)
                              (count (lambda (e)
                                       (equal? (attribute-value goal e) v))
@@ -93,9 +93,9 @@
 ;;; use.
 ;;; decision tree -> list of (attr . val) -> (attr . val)
 (define (execute-tree tree input)
-  (if (null? (cddr tree))
-      (cadr tree)
-      (execute-tree (cdr (assoc (attribute-value (car tree) input) (cdr tree)))
+  (if (not (list? (cdr tree)))
+      (list tree)
+      (execute-tree (cadr (assoc (attribute-value (car tree) input) (cdr tree)))
                     input)))
 
 (define (gini examples goal)
