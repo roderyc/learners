@@ -25,7 +25,8 @@
 
 (define-interface problems-interface
   (export *restaurant-problem*
-          *and-boolean-problem*))
+          *and-boolean-problem*
+          *xor-boolean-problem*))
 
 (define-interface high-learners-interface
   (compound-interface

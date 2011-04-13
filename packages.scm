@@ -8,7 +8,8 @@
   (open scheme
         (subset learning-problem (make-learning-problem/default-weights)))
   (files (problems restaurant)
-         (problems and)))
+         (problems and)
+         (problems xor)))
 
 (define-structure adaboost adaboost-interface
   (open scheme
