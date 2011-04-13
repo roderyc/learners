@@ -65,7 +65,7 @@
 (define (weighted-examples examples weights)
   (fold (lambda (e w new-examples)
           ;; normalized-weight may be a misnomer, but whatever.
-          (let ((normalized-weight (ceiling (* w (length weights)))))
+          (let ((normalized-weight (floor (* w (length weights)))))
             (append (make-list normalized-weight e) new-examples)))
         '() examples weights))
 
@@ -91,7 +91,7 @@
 
 ;;; Executes the given decision tree on input. Goal is the output attribute to
 ;;; use.
-;;; decision tree -> list of (attr . val) -> (attr . val)
+;;; decision tree -> list of (attr . val) -> list of (attr . val)
 (define (execute-tree tree input)
   (if (not (list? (cdr tree)))
       (list tree)
