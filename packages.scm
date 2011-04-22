@@ -1,7 +1,8 @@
 (define-structure learning-problem learning-problem-interface
   (open scheme
         (subset srfi-1 (every))
-        (subset srfi-9 (define-record-type)))
+        (subset srfi-9 (define-record-type))
+        (subset define-record-types (define-record-discloser)))
   (files learning-problem))
 
 (define-structure problems problems-interface

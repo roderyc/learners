@@ -13,6 +13,12 @@
     (weights learning-problem:weights)
     (goals learning-problem:goals))
 
+(define-record-discloser :learning-problem
+  (lambda (learning-problem)
+    (list 'learning-problem
+          (length (learning-problem:examples learning-problem)) 'examples
+          'goals: (learning-problem:goals learning-problem))))
+
 (define (default-weights examples)
   (map (lambda (e) (/ 1 (length examples))) examples))
 
