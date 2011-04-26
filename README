@@ -1,0 +1,7 @@
+This source is standard r5rs scheme, but has only been run in scheme48. To run
+it in that environment, open scheme48 (or scsh) and run
+
+  > ,exec ,load load.scm
+
+from this directory. After that, you'll have all the bindings listed in
+interfaces.scm. For now, read the source for details on them..
